@@ -75,22 +75,26 @@ int main(int argc, char** argv)
 	
 	  //////////////////////////////////////->>>>>>>>>>>>>>>>> itna change karna.......
 	vector<cv::String> fn;
-	glob("/images/*.png", fn, false);
+	glob("images/*.jpg", fn, false);
+	std::cout<<"images read successfully"<<fn[0]<<"\n";
 	vector<Mat> images;
 	size_t count = fn.size(); //number of png files in images folder
+	std::cout<<"count="<<count<<"\n";
 	for (size_t i=0; i<count; i++)
-		images.push_back(imread(fn[i]));
-
+	{std::cout<<"trying to read images \n"; images.push_back(imread(fn[i]));}
+	std::cout<<"images read successfully\n";	
       vector<vector<int>> bboxes;
-      Mat frameFace=images[0];
+      Mat frameFace;
+      Mat frame =images[0];
 	  
 	  ////------>>>>>
       tie(frameFace, bboxes) = getFaceBox(faceNet, frame, 0.7);
 
       if(bboxes.size() == 0) {
         cout << "No face detected, checking next frame." << endl;
-        continue;
+       return 0;// break;//continue;
       }
+      int padding=20;
       for (auto it = begin(bboxes); it != end(bboxes); ++it) {
         Rect rec(it->at(0) - padding, it->at(1) - padding, it->at(2) - it->at(0) + 2*padding, it->at(3) - it->at(1) + 2*padding);
         Mat face = frame(rec); // take the ROI of box on the frame
@@ -133,5 +137,6 @@ int main(int argc, char** argv)
         imwrite("out.jpg",frameFace);
       }
 
-    }
 }
+
+
