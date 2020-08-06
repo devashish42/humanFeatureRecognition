@@ -71,30 +71,49 @@ int main(int argc, char** argv)
     Net genderNet = readNet(genderModel, genderProto);
     Net faceNet = readNet(faceModel, faceProto);
 
-    VideoCapture cap;
-    if (argc > 1)
-        cap.open(argv[1]);
-    else
-        cap.open(0);
-    int padding = 20;
-    while(waitKey(1) < 0) {
-      // read frame
-      Mat frame;
-      cap.read(frame);
-      if (frame.empty())
-      {
-          waitKey();
-          break;
-      }
+    /////////////////////////------------------->
+	
+	  //Declare a vector of string for storing images path
 
+	vector<cv::String> fn;
+	glob("images/*.jpg", fn, false);
+
+	// Declaring Vector of Mat
+
+	vector<Mat> images;
+	
+	// storing size of vector in count varible  for iterating through images 
+	size_t count = fn.size(); //number of png files in images folder
+	
+	//using the imread function to take images as input in Mat object
+	
+	for (size_t i=0; i<count; i++)
+	{ images.push_back(imread(fn[i]));
+	
+	
+	
       vector<vector<int>> bboxes;
       Mat frameFace;
+      
+      //taking 1 image as input at a time and storing in frame 
+     
+      Mat frame =images[i];
+	  
+   //////////////////////////////--------------->
+     
       tie(frameFace, bboxes) = getFaceBox(faceNet, frame, 0.7);
+    
+      //Printing the name of currently loaded image
+     
+      cout<<endl<<"Reading Image - "<<fn[i]<<endl;
+
 
       if(bboxes.size() == 0) {
         cout << "No face detected, checking next frame." << endl;
         continue;
       }
+
+      int padding=20;
       for (auto it = begin(bboxes); it != end(bboxes); ++it) {
         Rect rec(it->at(0) - padding, it->at(1) - padding, it->at(2) - it->at(0) + 2*padding, it->at(3) - it->at(1) + 2*padding);
         Mat face = frame(rec); // take the ROI of box on the frame
@@ -109,6 +128,7 @@ int main(int argc, char** argv)
         // distance function does the argmax() work in C++
         int max_index_gender = std::distance(genderPreds.begin(), max_element(genderPreds.begin(), genderPreds.end()));
         string gender = genderList[max_index_gender];
+
         cout << "Gender: " << gender << endl;
 
         /* // Uncomment if you want to iterate through the gender_preds vector
@@ -132,10 +152,22 @@ int main(int argc, char** argv)
         string age = ageList[max_indice_age];
         cout << "Age: " << age << endl;
         string label = gender + ", " + age; // label
-        cv::putText(frameFace, label, Point(it->at(0), it->at(1) -15), cv::FONT_HERSHEY_SIMPLEX, 0.9, Scalar(0, 255, 255), 2, cv::LINE_AA);
-        imshow("Frame", frameFace);
+       
+       	// Implementing try catch in case any error comes
+	
+        try
+	{
+	cv::putText(frameFace, label, Point(it->at(-1), it->at(1) -15), cv::FONT_HERSHEY_SIMPLEX, 0.9, Scalar(0, 255, 255), 2, cv::LINE_AA);
+	imshow("Frame", frameFace);
         imwrite("out.jpg",frameFace);
+	}
+	catch(...)
+	{
+		
+	}
       }
+	}
 
-    }
 }
+
+

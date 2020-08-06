@@ -1,0 +1,93 @@
+Successfully upgraded file specified using deprecated V1LayerParameter
+Successfully upgraded file specified using deprecated V1LayerParameter
+Successfully upgraded file specified using deprecated V1LayerParameter
+Successfully upgraded file specified using deprecated V1LayerParameter
+[ INFO:0] global /home/ubuntu/opencv/modules/core/src/ocl.cpp (891) haveOpenCL Initialize OpenCL runtime...
+
+Reading Image - images/2.jpg
+Gender: Male
+Age: (8-12)
+Gender: Female
+Age: (4-6)
+
+Reading Image - images/2_58.jpg
+Gender: Male
+Age: (25-32)
+Gender: Male
+Age: (8-12)
+
+Reading Image - images/2_86.jpg
+No face detected, checking next frame.
+
+Reading Image - images/8_76.jpg
+No face detected, checking next frame.
+
+Reading Image - images/9_12.jpg
+No face detected, checking next frame.
+
+Reading Image - images/9_397.jpg
+No face detected, checking next frame.
+
+Reading Image - images/ajit_doval.jpg
+Gender: Male
+Age: (60-100)
+
+Reading Image - images/amanda_bynes.jpg
+Gender: Female
+Age: (25-32)
+Gender: Male
+Age: (4-6)
+
+Reading Image - images/couple1.jpg
+Gender: Female
+Age: (15-20)
+Gender: Male
+Age: (25-32)
+
+Reading Image - images/eddie.jpg
+Gender: Male
+Age: (25-32)
+Gender: Female
+Age: (8-12)
+
+Reading Image - images/fanning.jpg
+Gender: Female
+Age: (15-20)
+Gender: Female
+Age: (8-12)
+
+Reading Image - images/hoffman.jpg
+Gender: Male
+Age: (48-53)
+Gender: Female
+Age: (48-53)
+
+Reading Image - images/jolie.jpg
+Gender: Male
+Age: (25-32)
+Gender: Female
+Age: (48-53)
+
+Reading Image - images/murphy.jpg
+Gender: Female
+Age: (15-20)
+Gender: Female
+Age: (25-32)
+
+Reading Image - images/narendra_modi.jpg
+Gender: Male
+Age: (60-100)
+
+Reading Image - images/sample1.jpg
+Gender: Male
+Age: (8-12)
+Gender: Male
+Age: (4-6)
+Gender: Female
+Age: (25-32)
+
+Reading Image - images/travolta.jpg
+Gender: Female
+Age: (48-53)
+Gender: Male
+Age: (25-32)
